@@ -1,40 +1,79 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Buscar Declaração</title>
-</head>
-<body>
-  <h1>Buscar Declaração de Carga Horária</h1>
-  <input type="text" id="nome" placeholder="Digite seu nome" />
-  <button onclick="buscar()">Buscar</button>
-  <p id="mensagem"></p>
-
-  <script>
-    async function buscar() {
-      const nome = document.getElementById('nome').value.trim();
-      const mensagem = document.getElementById('mensagem');
-      mensagem.textContent = "Buscando...";
-
-      if (!nome) {
-        mensagem.textContent = "Digite um nome.";
-        return;
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Estágio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      :root {
+        --azul-principal: #076FA9;
+        --azul-secundario: #29ABE2;
+        --azul-hover: #055c8c;
+        --azul-claro: #e6f3f9;
       }
+    </style>
+  </head>
+  <body class="scroll-smooth">
+    <!-- Navegação -->
+    <nav class="bg-[color:var(--azul-secundario)] text-white sticky top-0 z-50">
+      <div class="max-w-6xl mx-auto px-4 flex items-center justify-between h-16">
+        <a href="#" class="font-semibold text-xl text-white">EGPA ANANINDEUA</a>
+      </div>
+    </nav>
 
-      try {
-        const res = await fetch(`https://script.google.com/macros/s/AKfycbxnhFgy1uaVC_r422lN7QAoJlS6s9o_891FXJInM3miqIJvp6CKEJR74s8tFkbGIpjngQ/exec?nome=${encodeURIComponent(nome)}`);
-        const data = await res.json();
+    <!-- Seção Estágio EGPA -->
+    <!-- ... conteúdo omitido para foco na nova seção ... -->
 
-        if (data.url) {
-          mensagem.innerHTML = `<a href="${data.url}" target="_blank">Clique aqui para baixar seu certificado</a>`;
-        } else {
-          mensagem.textContent = data.erro || "Erro desconhecido.";
+    <!-- Seção Declaração de Carga Horária -->
+    <section id="declaracao" class="bg-[#eaf6fb] py-16">
+      <div class="max-w-6xl mx-auto px-4">
+        <h2 class="text-2xl font-bold border-b-4 border-[color:var(--azul-secundario)] text-black inline-block mb-10">Baixar Declaração de Carga Horária</h2>
+        <div class="bg-white rounded-xl shadow-md p-6">
+          <label for="nome" class="block text-lg font-medium text-gray-700 mb-2">Digite seu nome completo:</label>
+          <input type="text" id="nome" class="w-full px-4 py-2 border border-gray-300 rounded-md mb-4 focus:outline-none focus:ring-2 focus:ring-[color:var(--azul-secundario)]" placeholder="Ex: Maria Silva" />
+          <button onclick="buscar()" class="bg-[color:var(--azul-principal)] text-white px-4 py-2 rounded-md hover:bg-[color:var(--azul-hover)] transition-transform hover:scale-105">Buscar Declaração</button>
+          <p id="mensagem" class="mt-4 text-gray-800"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer class="bg-[color:var(--azul-principal)] text-white text-center py-6">
+      <p>&copy; DTI-EGPA/2025. Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- Botão Flutuante WhatsApp -->
+    <a href="https://wa.me/5591984069956" target="_blank" class="fixed bottom-4 right-4 bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition duration-300 z-50 text-xl">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="w-6 h-6 fill-current">
+        <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.5-16.2-53.8-29-75.2-65.3-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.3-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2s-9.7 1.4-14.8 6.9c-5.1 5.5-19.5 19-19.5 46.4s20 53.9 22.8 57.6c2.8 3.7 39.4 60.1 95.5 84.3 13.3 5.7 23.6 9.1 31.7 11.7 13.3 4.3 25.4 3.7 35 2.3 10.6-1.5 32.8-13.4 37.4-26.4 4.7-13 4.7-24.1 3.3-26.4-1.4-2.3-5.1-3.7-10.6-6.5z"/>
+      </svg>
+    </a>
+
+    <script>
+      async function buscar() {
+        const nome = document.getElementById('nome').value.trim();
+        const mensagem = document.getElementById('mensagem');
+        mensagem.textContent = "Buscando...";
+
+        if (!nome) {
+          mensagem.textContent = "Digite um nome.";
+          return;
         }
-      } catch (err) {
-        mensagem.textContent = "Erro ao buscar o arquivo.";
+
+        try {
+          const res = await fetch(`https://script.google.com/macros/s/AKfycbxnhFgy1uaVC_r422lN7QAoJlS6s9o_891FXJInM3miqIJvp6CKEJR74s8tFkbGIpjngQ/exec?nome=${encodeURIComponent(nome)}`);
+          const data = await res.json();
+
+          if (data.url) {
+            mensagem.innerHTML = `<a href="${data.url}" target="_blank" class="text-[color:var(--azul-principal)] underline font-medium">Clique aqui para baixar sua declaração</a>`;
+          } else {
+            mensagem.textContent = data.erro || "Arquivo não encontrado.";
+          }
+        } catch (err) {
+          mensagem.textContent = "Erro ao buscar o arquivo.";
+        }
       }
-    }
-  </script>
-</body>
+    </script>
+  </body>
 </html>
